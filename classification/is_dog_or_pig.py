@@ -21,16 +21,16 @@ mac.fit(animals, results)
 expected = [0, 1, 0]
 predict = mac.predict([dog3, pig3, dog1])
 
-print("Hit rate: %.2f" % (mac.hit_rate_in_percent(expected, predict)))
+mac.hit_rate_in_percent(expected, predict)
 
 # Test 02
 expected = [1, 1, 0]
 predict = mac.predict([pig1, pig2, dog2])
 
-print("Hit rate: %.2f" % (mac.hit_rate_in_percent(expected, predict)))
+mac.hit_rate_in_percent(expected, predict)
 
 # Test 03
 expected = [0, 1, 0, 1, 0, 1]
 predict = mac.predict([dog2, pig3, dog1, pig2, dog2, pig1])
 
-print("Hit rate: %.2f" % (mac.hit_rate_in_percent(expected, predict)))
+mac.hit_rate_in_percent(expected, predict)
