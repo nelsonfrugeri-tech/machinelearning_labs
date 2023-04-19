@@ -2,7 +2,7 @@ from sklearn.svm import LinearSVC
 from sklearn.metrics import accuracy_score
 
 # features
-# long hair | short leg | makes ruff (1 for DOG, 0 for PIG)
+# long hair | short leg | makes ruff (0 for DOG, 1 for PIG)
 pig1 = [0, 1, 0]
 pig2 = [0, 1, 1]
 pig3 = [1, 1, 0]
@@ -17,9 +17,20 @@ results = [1, 1, 1, 0, 0, 0]
 model = LinearSVC()
 model.fit(animals, results)
 
-# Testing
-test1 = [[1,1,1], [1,1,0], [0,1,1]]
-expected = [0, 1, 1]
-predict = model.predict(test1)
+# Test 01
+expected = [0, 1, 0]
+predict = model.predict([dog3, pig3, dog1])
 
-print("Hit rate: ", accuracy_score(expected, predict) * 100)
+print("Hit rate: %.2f" % (accuracy_score(expected, predict) * 100))
+
+# Test 02
+expected = [1, 1, 0]
+predict = model.predict([pig1, pig2, dog2])
+
+print("Hit rate: %.2f" % (accuracy_score(expected, predict) * 100))
+
+# Test 03
+expected = [0, 1, 0, 1, 0, 1]
+predict = model.predict([dog2, pig3, dog1, pig2, dog2, pig1])
+
+print("Hit rate: %.2f" % (accuracy_score(expected, predict) * 100))
