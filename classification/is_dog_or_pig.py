@@ -1,6 +1,6 @@
-from kit_learn import Machine
+from kit_learn import Classifier
 
-mac = Machine()
+mac = Classifier()
 
 # features
 # long hair | short leg | makes ruff (0 for DOG, 1 for PIG)

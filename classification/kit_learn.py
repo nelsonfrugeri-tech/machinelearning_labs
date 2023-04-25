@@ -4,11 +4,11 @@ from sklearn.model_selection import train_test_split
 
 import numpy
 
-class Machine:
+class Classifier:
     def __init__(self):
         self.model = LinearSVC()
 
-    def classification(self, features, results, random_state, test_size):
+    def learn(self, features, results, random_state, test_size):
         train_features, test_features, train_results, test_results = train_test_split(features, results, 
                                                                                 random_state = random_state, 
                                                                                 test_size = test_size,
