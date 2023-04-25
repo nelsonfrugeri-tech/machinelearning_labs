@@ -8,4 +8,4 @@ import pandas
 mac = Classifier()
 data = pandas.read_csv(Path(__file__).parent / "data/ecom.csv")
 
-mac.learn(data[["home", "how_it_works", "contact"]], data["bought"], 20, 0.25)
+mac.linear_vector(data[["home", "how_it_works", "contact"]], data["bought"], 20, 0.25)
