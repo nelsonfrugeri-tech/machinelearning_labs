@@ -46,6 +46,9 @@ def main():
 
     mac.tree_cross_groups(data[["price", "km_per_age", "model_age"]], 
                              data["sold"], data["model"], MAX_DEPTH, N_SPLIT)
+    
+    mac.pipeline(data[["price", "km_per_age", "model_age"]], 
+                             data["sold"], data["model"], N_SPLIT)
 
 if __name__ == "__main__":
     main()
