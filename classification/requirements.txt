@@ -4,3 +4,4 @@ pathlib
 seaborn
 matplotlib
 numpy
+graphviz
