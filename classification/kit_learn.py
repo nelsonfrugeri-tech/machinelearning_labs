@@ -7,7 +7,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier
 from sklearn import tree
 from sklearn.model_selection import cross_validate
-from sklearn.model_selection import KFold
+from sklearn.model_selection import StratifiedKFold
 
 import matplotlib.pyplot as plt
 
@@ -19,7 +19,7 @@ class Classifier:
         self.model_turbo = SVC(random_state=random_state)
 
     def tree_cross(self, features, results, max_depth, n_splits):
-        kFold = KFold(n_splits = n_splits)
+        kFold = StratifiedKFold(n_splits = n_splits, shuffle = True)
         cross_result = cross_validate(DecisionTreeClassifier(max_depth = max_depth), 
                               features, results, cv = kFold, return_train_score = False)
         
