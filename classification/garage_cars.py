@@ -3,9 +3,11 @@ from datetime import datetime
 from kit_learn import Classifier
 
 import pandas as pd
+import matplotlib.pyplot as plt
 
 SEED = 20
 SIZE = 0.25
+MAX_DEPTH = 3
 
 def buildData():
     data = pd.read_csv(Path(__file__).parent / "data/garage_cars.csv")
@@ -27,9 +29,14 @@ def main():
     mac = Classifier(SEED)
 
     mac.linear_vector(data[["price", "km_per_age", "model_age"]], data["sold"], SEED, SIZE)
+    
     mac.baseline_by_dummy(data[["price", "km_per_age", "model_age"]], data["sold"], SEED, SIZE)
 
     mac.vector(data[["price", "km_per_age", "model_age"]], data["sold"], SEED, SIZE)
+    
+    mac.tree(data[["price", "km_per_age", "model_age"]], 
+                             data["sold"], SEED, SIZE, MAX_DEPTH)
+    plt.show()
 
 if __name__ == "__main__":
     main()
