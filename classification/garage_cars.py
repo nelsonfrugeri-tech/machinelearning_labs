@@ -3,11 +3,11 @@ from datetime import datetime
 from kit_learn import Classifier
 
 import pandas as pd
-import matplotlib.pyplot as plt
 
 SEED = 20
 SIZE = 0.25
 MAX_DEPTH = 3
+N_SPLIT = 5
 
 def buildData():
     data = pd.read_csv(Path(__file__).parent / "data/garage_cars.csv")
@@ -34,9 +34,11 @@ def main():
 
     mac.vector(data[["price", "km_per_age", "model_age"]], data["sold"], SEED, SIZE)
     
-    mac.tree(data[["price", "km_per_age", "model_age"]], 
+    mac.tree_plot(data[["price", "km_per_age", "model_age"]], 
                              data["sold"], SEED, SIZE, MAX_DEPTH)
-    plt.show()
+
+    mac.tree_cross(data[["price", "km_per_age", "model_age"]], 
+                             data["sold"], MAX_DEPTH, N_SPLIT)
 
 if __name__ == "__main__":
     main()
