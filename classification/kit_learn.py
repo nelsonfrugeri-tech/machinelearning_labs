@@ -8,6 +8,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn import tree
 from sklearn.model_selection import cross_validate
 from sklearn.model_selection import StratifiedKFold
+from sklearn.model_selection import GroupKFold
 
 import matplotlib.pyplot as plt
 
@@ -17,6 +18,17 @@ class Classifier:
     def __init__(self, random_state):
         self.model = LinearSVC(random_state=random_state)
         self.model_turbo = SVC(random_state=random_state)
+
+    def tree_cross_groups(self, features, results, groups, max_depth, n_splits):
+        kFold = GroupKFold(n_splits = n_splits)
+        cross_result = cross_validate(DecisionTreeClassifier(max_depth = max_depth), 
+                              features, results, cv = kFold, groups = groups, return_train_score = False)
+        
+        mean = cross_result['test_score'].mean()
+        deviation = cross_result['test_score'].std()
+
+        self.__print_hit_rate_with_cross_validation(n_splits, [round((mean - 2 * deviation) * 100, 2), 
+                                                round((mean + 2 * deviation) * 100, 2)])
 
     def tree_cross(self, features, results, max_depth, n_splits):
         kFold = StratifiedKFold(n_splits = n_splits, shuffle = True)
